@@ -1,4 +1,5 @@
 using Funq;
+using ridealong.Features;
 using ServiceStack;
 using ridealong.ServiceInterface;
 
@@ -13,8 +14,8 @@ public class AppHost : AppHostBase, IHostingStartup
             services.ConfigureNonBreakingSameSiteCookies(context.HostingEnvironment);
         });
 
-    public AppHost() : base("ridealong", typeof(MyServices).Assembly){}
-
+    public AppHost() : base("ridealong", typeof(MyServices).Assembly,
+        typeof(Event).Assembly) {}
 
     public override void Configure(Container container)
     {
