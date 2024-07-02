@@ -14,8 +14,7 @@ public class ConfigureDb : IHostingStartup
     public void Configure(IWebHostBuilder builder) => builder
         .ConfigureServices((context, services) => {
             services.AddSingleton<IDbConnectionFactory>(new OrmLiteConnectionFactory(
-                context.Configuration.GetConnectionString("DefaultConnection")
-                ?? "Server=localhost;User Id=postgres;Password=password;Database=postgres",
+                context.Configuration.GetConnectionString("Postgresdb"),
                 PostgreSqlDialect.Provider));
         })
         .ConfigureAppHost(appHost => {

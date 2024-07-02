@@ -27,6 +27,7 @@
     <PackageReference Include="ServiceStack" Version="8.*" />
     <PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="8.*" />
     <PackageReference Include="ServiceStack.Server" Version="8.*" />
+    <PackageReference Include="WolverineFx.Marten" Version="2.15.0" />
   </ItemGroup>
 
 </Project>
