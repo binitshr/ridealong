@@ -15,7 +15,7 @@ type NavItem = {
 export default function () {
 
     const items:NavItem[] = [
-        { href: '/features', name: 'Features'},
+        
     ]
 
     const { auth, attrs, signout } = useAuth()
