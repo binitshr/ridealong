@@ -6,13 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <Using Include="ridealong" />
+    <Using Include="RideAlong" />
     <Using Include="ServiceStack" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Features\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -26,14 +25,8 @@
   
   <ItemGroup>
     <PackageReference Include="ServiceStack" Version="8.*" />
-    <PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="8.3.0" />
-    <PackageReference Include="ServiceStack.OrmLite.Sqlite" Version="8.*" />
+    <PackageReference Include="ServiceStack.OrmLite.PostgreSQL" Version="8.*" />
     <PackageReference Include="ServiceStack.Server" Version="8.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ridealong.ServiceInterface\ridealong.ServiceInterface.csproj" />
-    <ProjectReference Include="..\ridealong.ServiceModel\ridealong.ServiceModel.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,9 +5,9 @@ using ServiceStack.Data;
 using ServiceStack.DataAnnotations;
 using ServiceStack.OrmLite;
 
-[assembly: HostingStartup(typeof(ridealong.ConfigureDb))]
+[assembly: HostingStartup(typeof(RideAlong.ConfigureDb))]
 
-namespace ridealong;
+namespace RideAlong;
 
 public class ConfigureDb : IHostingStartup
 {

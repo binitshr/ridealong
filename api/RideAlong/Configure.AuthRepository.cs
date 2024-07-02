@@ -5,9 +5,9 @@ using ServiceStack.Html;
 using ServiceStack.Auth;
 using ServiceStack.Configuration;
 
-[assembly: HostingStartup(typeof(ridealong.ConfigureAuthRepository))]
+[assembly: HostingStartup(typeof(RideAlong.ConfigureAuthRepository))]
 
-namespace ridealong;
+namespace RideAlong;
 
 public enum Department
 {

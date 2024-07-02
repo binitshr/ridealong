@@ -4,9 +4,9 @@ using ServiceStack.Auth;
 using ServiceStack.FluentValidation;
 using ServiceStack.Html;
 
-[assembly: HostingStartup(typeof(ridealong.ConfigureAuth))]
+[assembly: HostingStartup(typeof(RideAlong.ConfigureAuth))]
 
-namespace ridealong;
+namespace RideAlong;
 
 // Add any additional metadata properties you want to store in the Users Typed Session
 public class CustomUserSession : AuthUserSession

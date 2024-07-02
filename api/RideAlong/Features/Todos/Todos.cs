@@ -1,8 +1,6 @@
-using ServiceStack;
 using ServiceStack.Model;
-using System.Collections.Generic;
 
-namespace ridealong.ServiceModel;
+namespace RideAlong.Features.Todos;
 
 [Tag("todos")]
 [Route("/todos", "GET")]
