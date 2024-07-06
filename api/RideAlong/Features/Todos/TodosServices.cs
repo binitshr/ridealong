@@ -1,38 +1,58 @@
+using System.Collections;
+using Marten;
+
 namespace RideAlong.Features.Todos;
 
 public class TodosServices : Service
 {
-    public IAutoQueryData AutoQuery { get; set; }
 
-    static readonly PocoDataSource<Todo> Todos = PocoDataSource.Create(new Todo[]
-    {
-        new () { Id = 1, Text = "Learn" },
-        new () { Id = 2, Text = "React", IsFinished = true },
-        new () { Id = 3, Text = "Next.js!" },
-    }, nextId: x => x.Select(e => e.Id).Max());
+    private readonly IDocumentSession _documentSession;
 
-    public object Get(QueryTodos query)
+    public TodosServices(IDocumentSession documentSession)
     {
-        var db = Todos.ToDataSource(query, Request);
-        return AutoQuery.Execute(query, AutoQuery.CreateQuery(query, Request, db), db);
+        _documentSession = documentSession;
     }
 
-    public Todo Post(CreateTodo request)
+    public List<Todo> Get(QueryTodos query)
+    { 
+       return _documentSession.Query<Todo>().ToList();
+    }
+
+    public async Task<Todo> Post(CreateTodo request)
     {
-        var newTodo = new Todo { Id = Todos.NextId(), Text = request.Text };
-        Todos.Add(newTodo);
+        var newTodo = new Todo { Id = Guid.NewGuid(), Text = request.Text };
+        _documentSession.Store(newTodo);
+
+        await _documentSession.SaveChangesAsync();
+        
         return newTodo;
     }
 
-    public Todo Put(UpdateTodo request)
+    public async Task<Todo> Put(UpdateTodo request)
     {
         var todo = request.ConvertTo<Todo>();
-        Todos.TryUpdateById(todo, todo.Id);
+        _documentSession.Store(todo);
+        await _documentSession.SaveChangesAsync();
+        
         return todo;
     }
 
     // Handles Deleting the Todo item
-    public void Delete(DeleteTodo request) => Todos.TryDeleteById(request.Id);
+    public async Task Delete (DeleteTodo request)
+    {
+        _documentSession.Delete<Todo>(request.Id);
+        await _documentSession.SaveChangesAsync();
 
-    public void Delete(DeleteTodos request) => Todos.TryDeleteByIds(request.Ids);
+    }
+
+    public async Task Delete(DeleteTodos request)
+    {
+        foreach (var todo in request.Ids)
+        {
+            _documentSession.Delete<Todo>(todo);
+        }
+        await _documentSession.SaveChangesAsync();
+
+    }
+    
 }

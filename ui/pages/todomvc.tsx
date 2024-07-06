@@ -31,17 +31,17 @@ const TodosMvc = () => {
         setError(errorStatus)
         const api = await client.api(new QueryTodos())
         if (api.succeeded) {
-            setTodos(api.response!.results ?? [])
+            setTodos(api.response ?? [])
         }
     }
     const addTodo = async () => {
-        setTodos([...todos, new Todo({ id: -1, text: newTodo })])
+        setTodos([...todos, new Todo({ id: "", text: newTodo })])
         let api = await client.api(new CreateTodo({ text: newTodo }))
         if (api.succeeded)
             setNewTodo('')
         await refreshTodos(api.error)
     }
-    const removeTodo = async (id?: number) => {
+    const removeTodo = async (id?: string) => {
         setTodos(todos.filter(x => x.id != id))
         let api = await client.api(new DeleteTodo({ id }))
         await refreshTodos(api.error)
@@ -53,7 +53,7 @@ const TodosMvc = () => {
         let api = await client.api(new DeleteTodos({ ids }))
         await refreshTodos(api.error)
     }
-    const toggleTodo = async (id?: number) => {
+    const toggleTodo = async (id?: string) => {
         const todo = todos.find(x => x.id == id)!
         todo.isFinished = !todo.isFinished
         let api = await client.api(new UpdateTodo(todo))
