@@ -5,7 +5,7 @@ import Router from "next/router"
 import Page from "../components/layout-page"
 import { FormLoading, ErrorSummary, TextInput, Checkbox, SecondaryButton, PrimaryButton, getRedirect, Redirecting } from "../components/form"
 import { useClient, ApiContext } from "../lib/gateway"
-import { Authenticate, UpdateBooking } from "../lib/dtos"
+import { Authenticate} from "../lib/dtos"
 import useAuth from "../lib/useAuth"
 
 export default () => {

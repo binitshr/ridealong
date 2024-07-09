@@ -1,0 +1,39 @@
+//Get Todos
+GET {{host}}/querytodos
+Content-Type: application/json
+Accept: application/json
+
+{
+}
+###
+
+//Create Todos
+POST {{host}}/createTodo
+Content-Type: application/json
+Accept: application/json
+
+{
+  "text": "This"
+}
+
+
+###
+//Update Todo
+PUT {{host}}/api/UpdateTodo
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "b658015f49d04fd58f3fd6dc638a42dd",
+  "text": "Make these changes again",
+  "isFinished": "true"
+}
+###
+
+DELETE {{host}}/api/DeleteTodo
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "4a217208b9dc4ae89d162891cb75ef27"
+}
