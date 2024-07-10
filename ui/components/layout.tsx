@@ -2,6 +2,8 @@ import Alert from "./alert"
 import Nav from "./nav"
 import Footer from "./footer"
 import Meta from "./meta"
+import Providers from './providers'
+
 
 type Props = {
   preview?: boolean
@@ -13,10 +15,12 @@ const Layout = ({ preview, children }: Props) => {
     <>
       <Meta />
       <Nav />
-      <div className="min-h-screen">
-        <main>{children}</main>
-      </div>
-      <Footer />
+        <Providers>
+            <div className="min-h-screen">
+                <main>{children}</main>
+            </div>
+            <Footer />
+        </Providers>
     </>
   )
 }

@@ -17,9 +17,11 @@
   "dependencies": {
     "@mdx-js/loader": "^2.2.1",
     "@next/mdx": "^13.1.5",
+    "@nextui-org/react": "^2.4.2",
     "@servicestack/client": "^2.1.1",
     "classnames": "2.3.2",
     "date-fns": "2.29.3",
+    "framer-motion": "^11.2.14",
     "gray-matter": "4.0.3",
     "next": "^13.1.5",
     "react": "^18.2.0",

@@ -1,6 +1,7 @@
 using Marten;
 using Oakton.Resources;
 using RideAlong;
+using ServiceStack.Auth;
 using Weasel.Core;
 using Wolverine;
 using Wolverine.Marten;
@@ -24,6 +25,8 @@ builder.Host.UseWolverine(opts =>
     // Setting up the outbox on all locally handled
     // background tasks
     opts.Policies.UseDurableLocalQueues();
+    opts.Services.For<IAuthSession>().UseIfNone(null);
+    
 });
 
 var app = builder.Build();
