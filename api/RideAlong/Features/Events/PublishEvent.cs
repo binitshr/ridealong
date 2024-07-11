@@ -1,4 +1,4 @@
-namespace RideAlong.Features;
+namespace RideAlong.Features.Events;
 
 [Tag("events")]
 [Route("/events/publish", "POST")]

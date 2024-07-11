@@ -1,5 +1,6 @@
 using Funq;
 using RideAlong.Features;
+using RideAlong.Features.Events;
 using ServiceStack;
 
 [assembly: HostingStartup(typeof(RideAlong.AppHost))]
