@@ -4,6 +4,8 @@ import { getAllPosts } from "../lib/api"
 import Head from "next/head"
 import { CMS_NAME } from "../lib/constants"
 import Post from "../types/post"
+import { Button } from "@nextui-org/button"
+import { Link } from "@nextui-org/link"
 
 type Props = {
   allPosts: Post[]
@@ -23,6 +25,17 @@ const Index = ({ allPosts }: Props) => {
         <Container>
          <div>
            This is a random text
+         </div>
+         <div>
+         <Button
+            isExternal
+            as={Link}
+            className="text-sm font-normal text-default-600 bg-default-100"
+            href=""
+            variant="flat"
+          >
+            Sponsor
+          </Button>
          </div>
         </Container>
       </Layout>
