@@ -7,7 +7,9 @@ namespace RideAlong.Features.Events;
 [Route("/events/{Id}", "PUT")]
 public class UpdateEvent : IPut, IReturn<Event>
 {
-    [ValidateNotEmpty] public string Name { get; set; }
+    [ValidateNotEmpty] 
+    public Guid Id { get; set; }
+    public string Name { get; set; }
     public string Organizer { get; set; }
 }
 
