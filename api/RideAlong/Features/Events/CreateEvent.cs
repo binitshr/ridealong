@@ -22,7 +22,7 @@ public class CreateEventHandler : Service
 
     public async Task<Event> Post(CreateEvent request)
     {
-        var newEvent = new Event { Id = Guid.NewGuid(), Name = request.Name, Organizer = request.Organizer};
+        var newEvent = new Event { Id = Guid.NewGuid(), Name = request.Name, Organizer = request.Organizer, IsPublished = false, PublishedOn = null};
         _documentSession.Store(newEvent);
         await _documentSession.SaveChangesAsync();
 

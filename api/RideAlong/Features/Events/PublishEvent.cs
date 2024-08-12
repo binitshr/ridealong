@@ -1,7 +1,9 @@
+using Marten;
+
 namespace RideAlong.Features.Events;
 
 [Tag("events")]
-[Route("/events/publish", "POST")]
+[Route("/events/{Id}/publish", "POST")]
 public class PublishEvent
 {
     public Guid Id { get; set; }
@@ -9,18 +11,27 @@ public class PublishEvent
 
 public class PublishEventHandler : Service
 {
-    public Guid Post(PublishEvent request)
+    private readonly IDocumentSession _documentSession;
+
+    public PublishEventHandler(IDocumentSession documentSession)
     {
-        // load from the database
-        var evt = new Event();
-        
-        
-        evt.PublishedOn = DateTimeOffset.UtcNow;
-        // save to database
-        // Publish an event in the database
-        return request.Id;
-    } 
+        _documentSession = documentSession;
+    }
+
+    public async Task<Event> Post(PublishEvent request)
+    {
+        var evt = request.ConvertTo<Event>();
+        evt.IsPublished = true;
+        _documentSession.Store(evt);
+        await _documentSession.SaveChangesAsync();
+
+        return evt;
+    }
 }
 
 
-public class EventPublished{}
+public class EventPublished
+{
+    public Guid Id { get; set; }
+
+}

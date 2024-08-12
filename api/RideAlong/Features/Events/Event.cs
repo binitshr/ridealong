@@ -13,6 +13,6 @@ public class Event
         get;
         set;
     }
-    
-    public DateTimeOffset PublishedOn { get; set; }
+    public Boolean IsPublished { get; set; }
+    public DateTimeOffset? PublishedOn { get; set; }
 }
