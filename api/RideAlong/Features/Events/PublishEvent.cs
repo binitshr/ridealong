@@ -20,8 +20,15 @@ public class PublishEventHandler : Service
 
     public async Task<Event> Post(PublishEvent request)
     {
-        var evt = request.ConvertTo<Event>();
+        var evt = await _documentSession.LoadAsync<Event>(request.Id);
+        
+        if (evt == null)
+        {
+            throw HttpError.NotFound("Event not found");
+        }
+        
         evt.IsPublished = true;
+
         _documentSession.Store(evt);
         await _documentSession.SaveChangesAsync();
 
